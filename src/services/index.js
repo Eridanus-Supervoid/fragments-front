@@ -7,8 +7,20 @@ process.env.NODE_ENV === 'production' ?
 
 const service = axios.create({ withCredentials: true, baseURL });
 
-const elResumidor = axios.create({
-    //TODO:Cambiar key o si lees esto hackeame pofavo, toy mekoh
+
+// const cognitiveService = axios.create({
+//     baseURL: 'url',
+//     headers: {"Content-type":"application/ssml+xml", "X-Microsoft-OutputFormat":"audio-16khz-32kbitrate-mono-mp3",}
+// })
+
+
+// export const textoVoz = async values => {
+//     return await cognitiveService.post()
+// }
+
+
+const meaningCloud = axios.create({
+    //TODO:Cambiar key 
     baseURL: 'https://api.meaningcloud.com/',
     withCredentials: false,
     //headers: { "Access-Control-Allow-Origin": "*" }
@@ -17,10 +29,13 @@ const elResumidor = axios.create({
 export const resumen = async values => {
     const { sentences, txt } = values
 
-    return await elResumidor.post(`summarization-1.0?key=8391747ce1b0d0b1525a752080b21693&sentences=${sentences}`, {
+    return await meaningCloud.post(`summarization-1.0?key=8391747ce1b0d0b1525a752080b21693&sentences=${sentences}`, {
         txt: `${txt}`,
     })
 }
+
+
+
 
 export const test = async() => {
     return await service.get("/")

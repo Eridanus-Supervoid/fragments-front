@@ -42,7 +42,7 @@ const Login = ({history}) => {
 
             <Form.Item>
             <Button type='primary' htmlType='submit'>
-                
+                Login
             </Button>
             </Form.Item>
         </Form>
