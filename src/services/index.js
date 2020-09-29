@@ -22,7 +22,7 @@ const service = axios.create({ withCredentials: true, baseURL });
 const meaningCloud = axios.create({
     //TODO:Cambiar key 
     baseURL: 'https://api.meaningcloud.com/',
-    withCredentials: false,
+    // withCredentials: false,
     //headers: { "Access-Control-Allow-Origin": "*" }
 });
 
