@@ -40,39 +40,3 @@ export const getFragments = async userId => {
 export const getSummarize = async values => {
     return await service.post('/summarize', values)
 }
-
-
-
-//TODO:COGNITIVE SERVICE
-// const cognitiveService = axios.create({
-//     baseURL: 'url',
-//     headers: { "Content-type": "application/ssml+xml", "X-Microsoft-OutputFormat": "audio-16khz-32kbitrate-mono-mp3", }
-// })
-
-
-// export const textoVoz = async values => {
-//     return await cognitiveService.post()
-// }
-
-// axios({
-//     method: 'post',
-//     url: '/login',
-//     data: {
-//       firstName: 'Finn',
-//       lastName: 'Williams'
-//     },
-//     config: {
-
-//     }
-//   });
-
-
-//   axios.post('/login', {
-//     firstName: 'Finn',
-//     lastName: 'Williams'
-//   })
-//   .then((response) => {
-//     console.log(response);
-//   }, (error) => {
-//     console.log(error);
-//   });
