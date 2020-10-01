@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {getFragment} from '../services'
 import {Button} from 'antd'
+import { Card, Col, Row } from 'antd';
 
 
 
@@ -45,8 +46,20 @@ const FragmentDetail = ({
 
     return userFragment ?(
         <div>
-            <p>{userFragment.summary}</p>
-            <Button onClick={textoVoz}>Texto a Voz</Button>
+            <div>
+                <Col>
+                <Row>
+                <Card title={userFragment.name} bordered={false} style={{ width: "60%", margin:"30px" }}>
+                <p>{userFragment.summary}</p>
+                <Button onClick={textoVoz}>Texto a Voz</Button>
+                </Card>
+                <Card title="Nota 01" bordered={false} style={{ width: "30%", margin:"30px" }}>
+                <p>Esto es una nota corta.</p>
+                <Button onClick={textoVoz}>Texto a Voz</Button>
+                </Card>
+                </Row>
+                </Col>
+            </div>
         </div>
     ) : 
     (

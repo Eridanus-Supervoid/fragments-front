@@ -2,14 +2,18 @@ import React, {useContext} from 'react'
 import { MyContext } from "../context"
 import {getSummarize} from "../services"
 import { Form, Input, Button, InputNumber} from "antd"
+import {useHistory} from "react-router-dom"
 
-const NewFragment = ({history}) => {
+const NewFragment = () => {
+    const history = useHistory()
     const [form] = Form.useForm()
     const { user } = useContext(MyContext)
         
     async function summarize(values) {
-        await getSummarize({...values, user})
-        //history.push("/fragments/:userid")
+        const fragment = await getSummarize({...values, user})
+        console.log(fragment)
+        console.log(fragment.data._id)
+        history.push(`/fragments/${fragment.data._id}`)
     }  
 
     return (

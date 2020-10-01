@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import { Layout, Menu, Breadcrumb, Avatar } from 'antd';
 import {
     BookOutlined,
@@ -29,6 +29,7 @@ function LayoutApp ({children}) {
         clearCtxUser()
         history.push("/login")
     }
+
 
     return (
     <Layout style={{ minHeight: '100vh' }}>

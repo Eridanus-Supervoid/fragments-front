@@ -31,24 +31,24 @@ const Fragments = () => {
     }, [])
 
     return userFragments ? (
-        <div>
+        <div style={{display: "flex", flexDirection: "column", justifyContent:"space-around", alignItems:"center", alignContent:"strech" }}>
             <Button block type='primary' onClick={() => setShowModal(true)}>
                 New Fragment
             </Button>
-            <Title level={1}>My Fragments</Title>
+            <Title level={1} style={{margin:"30px"}}>My Fragments</Title>
             <Modal
                 title='Create New Fragment'
                 visible={showModal}
                 onCancel={() => setShowModal(false)}
                 footer={[
-                <Button type='dashed' danger onClick={() => setShowModal(false)}>
+                <Button type='dashed' danger onClick={() => setShowModal(false)} style={{margin:"30px"}}>
                     Cancel
                 </Button>
                 ]}>
                 <NewFragment/>
             </Modal>
         {userFragments.map(fragment => (
-        <Col key={fragment._id} sm={24} md={12} lg={8}>
+        <Col key={fragment._id} sm={24} md={12} lg={8} style={{margin:"10px", width:"30%"}}>
             <Card
                 actions={[
                 <Link to={`/fragments/${fragment._id}`}>
