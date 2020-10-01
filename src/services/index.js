@@ -8,35 +8,6 @@ process.env.NODE_ENV === 'production' ?
 const service = axios.create({ withCredentials: true, baseURL });
 
 
-// const cognitiveService = axios.create({
-//     baseURL: 'url',
-//     headers: {"Content-type":"application/ssml+xml", "X-Microsoft-OutputFormat":"audio-16khz-32kbitrate-mono-mp3",}
-// })
-
-
-// export const textoVoz = async values => {
-//     return await cognitiveService.post()
-// }
-
-
-const meaningCloud = axios.create({
-    //TODO:Cambiar key 
-    baseURL: 'https://api.meaningcloud.com/',
-    // withCredentials: false,
-    //headers: { "Access-Control-Allow-Origin": "*" }
-});
-
-export const resumen = async values => {
-    const { sentences, txt } = values
-
-    return await meaningCloud.post(`summarization-1.0?key=8391747ce1b0d0b1525a752080b21693&sentences=${sentences}`, {
-        txt: `${txt}`,
-    })
-}
-
-
-
-
 export const test = async() => {
     return await service.get("/")
 }
@@ -57,8 +28,31 @@ export const getProfile = async() => {
     return await service.get("/profile")
 }
 
+export const getFragment = async fragmentId => {
+    return await service.get(`/fragments/${fragmentId}`)
+}
+
+export const getFragments = async userId => {
+    return await service.post("/fragmentsFetch", userId)
+}
+
+//====MEANING CLOUD
+export const getSummarize = async values => {
+    return await service.post('/summarize', values)
+}
 
 
+
+//TODO:COGNITIVE SERVICE
+// const cognitiveService = axios.create({
+//     baseURL: 'url',
+//     headers: { "Content-type": "application/ssml+xml", "X-Microsoft-OutputFormat": "audio-16khz-32kbitrate-mono-mp3", }
+// })
+
+
+// export const textoVoz = async values => {
+//     return await cognitiveService.post()
+// }
 
 // axios({
 //     method: 'post',

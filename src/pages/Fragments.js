@@ -1,42 +1,76 @@
-import React from 'react'
-import {resumen} from "../services"
-import { Form, Input, Button} from "antd"
+import React, {useState, useEffect, useContext} from 'react'
+import { Button, Modal, Typography, Skeleton, Col, Card} from "antd"
+import { PlusOutlined } from "@ant-design/icons"
+import {getFragments } from "../services/index"
+import NewFragment from "../components/NewFragment"
+import { MyContext } from "../context"
+import { Link } from "react-router-dom"
+const {Title} = Typography
+const { Meta } = Card
 
-const Fragments = ({history}) => {
-    const [form] = Form.useForm()
-        
-    async function summarize(values) {
-        await resumen(values)
-        history.push("/fragments")
-    }  
 
-    return (
+
+const Fragments = () => {
+    const [showModal, setShowModal] = useState(false)
+    const [userFragments, setUserFragments] = useState(null)
+    const { user } = useContext(MyContext)
+
+    useEffect(() => {
+            console.log(user._id)
+            const userId = {
+                userId: user._id
+            }
+            async function fetchFragments() {
+            const {
+                data: {userFragments}
+            } = await getFragments(userId)
+            console.log(userFragments)
+            setUserFragments(userFragments)
+            }
+            fetchFragments()
+    }, [])
+
+    return userFragments ? (
         <div>
-            <Form layout='vertical' name='basic' form={form} onFinish={summarize}>
-            <Form.Item
-            label='Nombre'
-            name='name'
-            rules={[{ required: true, message: "Nombre del resumen." }]}>
-            <Input />
-            </Form.Item>
-            <Form.Item
-            label='Texto a Resumir'
-            name='txt'
-            rules={[{ required: true, message: "Introduce el texto a resumir." }]}>
-            <Input />
-            </Form.Item>
-            <Form.Item
-            label='Cantidad de oraciones.'
-            name='sentences'
-            rules={[{ required: true, message: "Introduce la cantidad de oraciones." }]}>
-            <Input />
-            </Form.Item>
-            <Form.Item>
-            <Button type='primary' htmlType='submit'>
-                Resumir
+            <Button block type='primary' onClick={() => setShowModal(true)}>
+                New Fragment
             </Button>
-            </Form.Item>
-        </Form>
+            <Title level={1}>My Fragments</Title>
+            <Modal
+                title='Create New Fragment'
+                visible={showModal}
+                onCancel={() => setShowModal(false)}
+                footer={[
+                <Button type='dashed' danger onClick={() => setShowModal(false)}>
+                    Cancel
+                </Button>
+                ]}>
+                <NewFragment/>
+            </Modal>
+        {userFragments.map(fragment => (
+        <Col key={fragment._id} sm={24} md={12} lg={8}>
+            <Card
+                actions={[
+                <Link to={`/fragments/${fragment._id}`}>
+                    <PlusOutlined />
+                </Link>
+                ]}
+                hoverable>
+                <Meta
+                title={fragment.name}
+                description={
+                    <>
+                    <p>{fragment.summarize}</p>
+                    </>
+                }
+                />
+            </Card>
+        </Col>
+    ))}
+        </div>
+    ): (
+        <div style={{ backgroundColor: "black", padding: "1rem" }}>
+            <Skeleton active />
         </div>
     )
 }

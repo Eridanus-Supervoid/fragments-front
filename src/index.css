@@ -1,22 +1,8 @@
-.ant-layout-sider-trigger {
-    background-color: #202124;
-}
-
 .ant-layout-header {
-    height: 52px;
-    background-color: #202124;
+    height: 67px;
+    background-color: #161616;
 }
 
 .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
-    background-color: #18e4ff70;
-}
-
-.ant-menu-dark .ant-menu-inline.ant-menu-sub {
-    background: #202124;
-}
-
-.ant-menu-dark .ant-menu-sub,
-.ant-menu.ant-menu-dark .ant-menu-sub {
-    color: rgba(255, 255, 255, 0.65);
-    background: #202124;
+    background-color: #7d3f8a;
 }
