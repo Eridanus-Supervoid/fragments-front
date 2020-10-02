@@ -8,9 +8,7 @@ const NewNote = ({fragmentId, setnewNote}) => {
     const history = useHistory()
     const [form] = Form.useForm()
     async function createNoteNow (values) {
-        console.log(fragmentId)
         const note = await createNote({...values, fragmentId})
-        console.log(note)
         setnewNote(true)
         history.push(`/fragments/${fragmentId}`)
     }  

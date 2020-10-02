@@ -22,7 +22,6 @@ const FragmentDetail = ({
         const {
             data: {fragment}
         } = await getFragment(fragmentId)
-        console.log(fragment)
         setUserFragment(fragment)
         }
         fetchFragment()
@@ -51,7 +50,6 @@ const FragmentDetail = ({
                 var toSpeak = userFragment.summary;
                 var msg = new SpeechSynthesisUtterance(toSpeak);
                 var voices = window.speechSynthesis.getVoices();
-                console.log(voices)
                 msg.voice = voices[5]; 
                 msg.volume = 0.5;
                 msg.lang = 'es-US';

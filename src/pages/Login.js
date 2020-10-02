@@ -21,7 +21,6 @@ const Login = ({history}) => {
         delete user.hash
         delete user.salt
         setCtxUser(user)
-        console.log(user)
         history.push("/fragments")
     }
     return (

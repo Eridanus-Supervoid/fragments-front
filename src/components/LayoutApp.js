@@ -19,7 +19,6 @@ function LayoutApp ({children}) {
     const [collapsed, setCollapsed] = useState(false)
     const {clearCtxUser, user} = useContext(MyContext)
     const onCollapse = collapsed => {
-        console.log(collapsed);
         setCollapsed( collapsed );
     };
 

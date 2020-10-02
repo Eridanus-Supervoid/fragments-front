@@ -14,7 +14,6 @@ const Fragments = () => {
     const { user } = useContext(MyContext)
 
     useEffect(() => {
-            console.log(user._id)
             const userId = {
                 userId: user._id
             }
@@ -22,7 +21,6 @@ const Fragments = () => {
             const {
                 data: {userFragments}
             } = await getFragments(userId)
-            console.log(userFragments)
             setUserFragments(userFragments)
             }
             fetchFragments()

@@ -11,8 +11,6 @@ const NewFragment = () => {
         
     async function summarize(values) {
         const fragment = await getSummarize({...values, user})
-        console.log(fragment)
-        console.log(fragment.data._id)
         history.push(`/fragments/${fragment.data._id}`)
     }  
 
