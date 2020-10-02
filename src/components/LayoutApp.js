@@ -54,11 +54,6 @@ function LayoutApp ({children}) {
                 <Menu.Item key="5" icon={<BookOutlined />}>
                     <Link to="/fragments">My Fragments</Link>
                 </Menu.Item>
-                {/* <SubMenu key="sub1" icon={<BuildOutlined />} title="Fragments">
-                    <Menu.Item key="6">Fragment 01</Menu.Item>
-                    <Menu.Item key="7">Fragment 02</Menu.Item>
-                    <Menu.Item key="8">Fragment 03</Menu.Item>
-                </SubMenu> */}
                 </>
             )}
         </Menu>

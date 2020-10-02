@@ -1,6 +1,12 @@
 import React from "react"
-import { Form, Input, Button } from "antd"
+import { Form, Input, Button, Divider, Row, Col  } from "antd"
 import { signup } from "../services"
+
+let baseURL
+
+process.env.NODE_ENV === "production"
+    ? (baseURL = "https://murmuring-reaches-95521.herokuapp.com")
+    : (baseURL = "http://localhost:3000")
 
 const Signup = ({ history }) => {
     const [form] = Form.useForm()
@@ -36,6 +42,21 @@ const Signup = ({ history }) => {
                 </Button>
                 </Form.Item>
             </Form>
+
+            <Divider>Or</Divider>
+                <br />
+                <Row gutter={16}>
+                    <Col span={12}>
+                    <Button type='primary' block>
+                        <a href={`${baseURL}/auth/facebook`}>Login with Facebook</a>
+                    </Button>
+                    </Col>
+                    <Col span={12}>
+                    <Button danger type='primary' block>
+                        <a href={`${baseURL}/auth/google`}>Login with Google</a>
+                    </Button>
+                    </Col>
+                </Row>
             </div>
     )
 }

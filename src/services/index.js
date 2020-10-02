@@ -36,8 +36,16 @@ export const getFragments = async userId => {
     return await service.post("/api/fragmentsFetch", userId)
 }
 
+export const deleteFragmentId = async fragmentId => {
+    return await service.delete(`/api/fragments/${fragmentId}`)
+}
+
 export const createNote = async values => {
     return await service.post("/api/notes", values)
+}
+
+export const deleteNoteId = async noteId => {
+    return await service.delete(`/api/notes/${noteId}`)
 }
 
 

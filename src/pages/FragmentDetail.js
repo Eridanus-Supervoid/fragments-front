@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import {getFragment} from '../services'
+import {getFragment, deleteNoteId, deleteFragmentId} from '../services'
 import {Button} from 'antd'
 import { Card, Col, Row, Modal } from 'antd';
 import NewNote from "../components/NewNote"
+import {useHistory} from "react-router-dom"
 const { Meta } = Card
 
 const FragmentDetail = ({
@@ -14,6 +15,8 @@ const FragmentDetail = ({
     const [userFragment, setUserFragment] = useState(null)
     const [showModal, setShowModal] = useState(false)
     const [newNote, setnewNote] = useState(false)
+    const history = useHistory()
+
     useEffect(() => {
         async function fetchFragment() {
         const {
@@ -25,8 +28,14 @@ const FragmentDetail = ({
         fetchFragment()
     }, [newNote, fragmentId])
 
-    const deleteNote = () => {
+    async function deleteNote(noteId) {
+        await deleteNoteId(noteId)
+        history.push(`/fragments/${fragmentId}`)
+    }
 
+    async function deleteFragment(fragmentId) {
+        await deleteFragmentId(fragmentId)
+        history.push(`/fragments`)
     }
 
     const textoVoz = () => {
@@ -74,9 +83,10 @@ const FragmentDetail = ({
                 <Card title={userFragment.name} bordered={false} style={{ width: "96%", margin:"30px" }}>
                 <p>{userFragment.summary}</p>
                 <Button onClick={textoVoz}>Texto a Voz</Button>
-                <Button onClick={() => window.speechSynthesis.pause()}>Pause</Button>
-                <Button onClick={() => window.speechSynthesis.resume()}>Play</Button>
-                <Button onClick={() => window.speechSynthesis.cancel()}>Stop</Button>
+                <Button onClick={() => window.speechSynthesis.pause()} style={{ margin:"5px" }}>Pause</Button>
+                <Button onClick={() => window.speechSynthesis.resume()} style={{ margin:"5px" }}>Play</Button>
+                <Button onClick={() => window.speechSynthesis.cancel()} style={{ margin:"5px" }}>Stop</Button>
+                <Button type='dashed' danger onClick={() => deleteFragment(fragmentId)} style={{ margin:"5px" }}>Delete</Button>
                 </Card>
                 <Row style={{ margin:"20px" }}>
                 {userFragment.noteId.map(note => (
@@ -88,7 +98,7 @@ const FragmentDetail = ({
                             <p>{note.summary}</p>
                         }
                         />
-                        <Button type='dashed' danger onClick={deleteNote}>Delete</Button>
+                        <Button type='dashed' danger onClick={() => deleteNote(note._id)} >Delete</Button>
                     </Card>
                     </Col>
                 ))}
