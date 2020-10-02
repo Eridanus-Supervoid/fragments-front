@@ -1,10 +1,9 @@
 import React, {useState, useContext, useEffect} from 'react'
-import { Layout, Menu, Breadcrumb, Avatar } from 'antd';
+import { Layout, Menu} from 'antd';
 import {
     BookOutlined,
     LoginOutlined,
     TeamOutlined,
-    UserOutlined,
     BuildOutlined
 } from '@ant-design/icons';
 import {logOut} from "../services"
@@ -55,15 +54,11 @@ function LayoutApp ({children}) {
                 <Menu.Item key="5" icon={<BookOutlined />}>
                     <Link to="/fragments">My Fragments</Link>
                 </Menu.Item>
-                <SubMenu key="sub1" icon={<BuildOutlined />} title="Fragments">
+                {/* <SubMenu key="sub1" icon={<BuildOutlined />} title="Fragments">
                     <Menu.Item key="6">Fragment 01</Menu.Item>
                     <Menu.Item key="7">Fragment 02</Menu.Item>
                     <Menu.Item key="8">Fragment 03</Menu.Item>
-                </SubMenu>
-                <SubMenu key="sub2" icon={<TeamOutlined />} title="Friends">
-                    <Menu.Item key="9">Friend 01</Menu.Item>
-                    <Menu.Item key="10">Friend 02</Menu.Item>
-                </SubMenu>
+                </SubMenu> */}
                 </>
             )}
         </Menu>
@@ -71,16 +66,10 @@ function LayoutApp ({children}) {
         <Layout className="site-layout" >
         <Header className="site-layout-background" style={{ padding: 0 }}>
         {user &&(<Menu theme="dark" mode="horizontal" style={{float: 'right', backgroundColor: "#161616"}}>
-            <Avatar size="large" style={{margin: "10px"}} icon={<UserOutlined />}/>
-            <Menu.Item key="11">Profile</Menu.Item>
             <Menu.Item key="12"  onClick={logoutProcess}>Logout</Menu.Item>
         </Menu>)}
         </Header>
         <Content style={{ margin: '0 16px' }}>
-            {/* <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-            </Breadcrumb> */}
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
             {children}
             </div>

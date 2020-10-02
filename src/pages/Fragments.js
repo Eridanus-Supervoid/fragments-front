@@ -8,8 +8,6 @@ import { Link } from "react-router-dom"
 const {Title} = Typography
 const { Meta } = Card
 
-
-
 const Fragments = () => {
     const [showModal, setShowModal] = useState(false)
     const [userFragments, setUserFragments] = useState(null)
